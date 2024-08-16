@@ -1,0 +1,72 @@
+basePath: /
+definitions:
+  main.HealthStatus:
+    properties:
+      status:
+        type: string
+      time:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample server for a Fiber application.
+  title: Fiber API Example
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: Get a static message.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get message
+      tags:
+      - root
+    post:
+      consumes:
+      - application/json
+      description: Echo the data posted in the request body.
+      parameters:
+      - description: Data
+        in: body
+        name: data
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Echo data
+      tags:
+      - root
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Get the health status of the application.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.HealthStatus'
+      summary: Get health status
+      tags:
+      - health
+swagger: "2.0"
