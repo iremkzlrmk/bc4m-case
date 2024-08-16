@@ -6,7 +6,6 @@ import (
     "github.com/gofiber/swagger"
     _ "bc4m-case/docs"
     "time"
-    "fmt"
 )
 
 type HealthStatus struct {
