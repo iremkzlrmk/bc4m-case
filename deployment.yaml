@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bc4m-case-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bc4m-case
+  template:
+    metadata:
+      labels:
+        app: bc4m-case
+    spec:
+      containers:
+      - name: bc4m-case
+        image: iremkzlrmk/bc4m-case:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+
