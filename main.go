@@ -14,7 +14,7 @@ type HealthStatus struct {
     Time   string `json:"time"`
 }
 
-// @title Fiber API Example
+// @title Fiber API
 // @version 1.0
 // @description This is a simple API for BC4M.
 // @host localhost:8080
@@ -77,8 +77,6 @@ func getHealthStatus(c *fiber.Ctx) error {
 // @Success 200 {object} map[string]interface{}
 // @Router / [post]
 func postData(c *fiber.Ctx) error {
-    body := c.Body()
-    fmt.Println("Received raw body:", string(body))
-    return c.Send(body)
+    return c.Send(c.Body())
 }
 
